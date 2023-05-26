@@ -97,9 +97,10 @@ alias ai='docker container run jni-gpt-on-cli'
 
 # Usage
 Pass your quoted question as an argument to the `ai` command:
-```bash
-ai "How do I install a package on Arch Linux?"
-```
+
+![Usage example](./documentation/usage.png)
+Result of `HUMOUR_STYLE = "friendly ironic"`
+
 
 The general usage info reads  like this:
 ```bash
