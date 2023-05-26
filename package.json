@@ -1,12 +1,12 @@
 {
-  "name": "jni-ts-template",
-  "version": "0.5.0",
-  "description": "Template to start with a fresh TypeScript project.",
+  "name": "gpt-on-cli",
+  "version": "0.1.0",
+  "description": "Provide access to GPT 3 model via CLI encapsulated as a docker container.",
   "main": "App.ts",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mopore/jni-ts-template"
+    "url": "https://github.com/mopore/gpt-on-cli"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -14,7 +14,8 @@
     "build": "rm -rf ./dist && tsc -b"
   },
   "keywords": [
-    "template",
+    "gpt",
+    "open-ai",
     "TypeScript"
   ],
   "author": "jni@mopore.org",

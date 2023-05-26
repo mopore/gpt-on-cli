@@ -1,26 +1,27 @@
 ```
-    ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄███████▄  ▄█          ▄████████     ███        ▄████████ 
-▀█████████▄   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ███         ███    ███ ▀█████████▄   ███    ███ 
-   ▀███▀▀██   ███    █▀  ███   ███   ███   ███    ███ ███         ███    ███    ▀███▀▀██   ███    █▀  
-    ███   ▀  ▄███▄▄▄     ███   ███   ███   ███    ███ ███         ███    ███     ███   ▀  ▄███▄▄▄     
-    ███     ▀▀███▀▀▀     ███   ███   ███ ▀█████████▀  ███       ▀███████████     ███     ▀▀███▀▀▀     
-    ███       ███    █▄  ███   ███   ███   ███        ███         ███    ███     ███       ███    █▄  
-    ███       ███    ███ ███   ███   ███   ███        ███▌    ▄   ███    ███     ███       ███    ███ 
-   ▄████▀     ██████████  ▀█   ███   █▀   ▄████▀      █████▄▄██   ███    █▀     ▄████▀     ██████████ 
-                                                      ▀                                               
+ ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄ 
+▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌
+▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀      ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌           ▀▀▀▀█░█▀▀▀▀ 
+▐░▌          ▐░▌       ▐░▌     ▐░▌          ▐░▌          ▐░▌               ▐░▌     
+▐░▌ ▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌     ▐░▌          ▐░▌          ▐░▌               ▐░▌     
+▐░▌▐░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌          ▐░▌          ▐░▌               ▐░▌     
+▐░▌ ▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀      ▐░▌          ▐░▌          ▐░▌               ▐░▌     
+▐░▌       ▐░▌▐░▌               ▐░▌          ▐░▌          ▐░▌               ▐░▌     
+▐░█▄▄▄▄▄▄▄█░▌▐░▌               ▐░▌          ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄  ▄▄▄▄█░█▄▄▄▄ 
+▐░░░░░░░░░░░▌▐░▌               ▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ ▀▀▀▀▀▀▀▀▀▀▀  ▀                 ▀            ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ 
+                                                                                   
 ```
 
 Source for ASCII-fonts: https://www.coolgenerator.com/ascii-text-generator
-(Font: Delta Corps Priest 1
+(Font: Electronic)
 
 
 # What is this?
-
-This is template for TypeScript project in VS Code with linting.
+Provide access to GPT 3 model via CLI encapsulated as a docker container.
 
 # What's the motivation?
-
-To have an easier start for my projects.
+To stay in the terminal when having a question (e.g. on how a certain command works)
 
 # Installation
 Place keys and environment variable values inside a .env file in the project's root folder.
@@ -46,26 +47,6 @@ Provide an adequate descrioption.
 
 # Release History
 
-## v0.5.1
+## v0.1.0 (Untagged)
 - Remove not used workspace configuration.
 
-## v0.5.0
-- Upgrade all components to latest versions.
-- Use 'NodeNext' for module resolution.
-- Replace 'npm' with 'pnpm'.
-- Replace 'jest' with 'mocha'.
-
-## v0.4.1
-- Template restrictions removed in linting.
-## v0.4.0
-- NCU guide added to readme.
-- Upgraded to latest versions of TypeScript (4.5.2), Jest (27.4.3) and the rest.
-
-## v0.3.0
-- Upgrade of TypeScript to 4.3
-
-## v0.2.0
-- Support for dotenv
-
-## v0.1.0
-- Initial commit.
