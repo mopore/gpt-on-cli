@@ -7,13 +7,14 @@
         {
             "type": "node",
             "request": "launch",
+            "console": "integratedTerminal",
             "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/src/App.ts",
             "args": [
-                "With exa how can I can list hidden files?"
+                "\"How do I install Alacritty\""
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

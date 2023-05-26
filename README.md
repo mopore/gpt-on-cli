@@ -35,11 +35,26 @@ These preferences will be provided together with the API key in a .env file whic
 Therefore it is not recommended to upload your  image to a public repository.
 
 Create a new `.env' file in this root folder of this project. The `.env` is listed in the `.gitignore` file and will not be uploaded to the repository.
+Feel free to experiment with your own values the perference properties. 
+
+Here is an example:
 
 ```bash
 TARGET_OS = "Manjaro Linux"
 # TARGET_OS = "Arch Linx"
 # TARGET_OS = "MacOS"
+# TARGET_OS = "Ubuntu"
+
+# HUMOUR_STYLE = "none"
+HUMOUR_STYLE = "friendly"
+# HUMOUR_STYLE = "friendly ironic"
+# HUMOUR_STYLE = "mean sarcastic"
+
+TERMINAL_EMULATOR = "very simple"
+# TERMINAL_EMULATOR = "Alacritty"
+# TERMINAL_EMULATOR = "iTerm2"
+
+OPENAI_KEY = "<your OpenAI API key>"
 ```
 
 You  should have a similar project structure like this:
@@ -86,6 +101,15 @@ Pass your quoted question as an argument to the `ai` command:
 ai "How do I install a package on Arch Linux?"
 ```
 
+The general usage info reads  like this:
+```bash
+Usage: ai [OPTIONS] [STRING]
+
+Options:
+  -h, --help       Show this message and exit.
+  -v, --version   Show version info and exit.
+```
+
 # Additional Information
 
 ## Project Maintenance
@@ -97,7 +121,6 @@ To add a new package to the project
 
 
 # Release History
-
-## v0.1.0 (Untagged)
-- Remove not used workspace configuration.
+## v0.1.0
+- Initial project version
 
