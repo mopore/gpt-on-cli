@@ -11,7 +11,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "test": "mocha dist/test/**/*.js --recursive --exit",
-    "build": "rm -rf ./dist && tsc -b"
+    "build": "rm -rf ./dist && tsc -b",
+    "build-image": "docker buildx build -t jni-gpt-on-cli ."
   },
   "keywords": [
     "gpt",
