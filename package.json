@@ -1,0 +1,38 @@
+{
+  "name": "jni-ts-template",
+  "version": "0.5.0",
+  "description": "Template to start with a fresh TypeScript project.",
+  "main": "App.ts",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mopore/jni-ts-template"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "test": "mocha dist/test/**/*.js --recursive --exit",
+    "build": "rm -rf ./dist && tsc -b"
+  },
+  "keywords": [
+    "template",
+    "TypeScript"
+  ],
+  "author": "jni@mopore.org",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.18",
+    "@types/sinon": "^10.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.33.0",
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
