@@ -14,7 +14,8 @@ const constructPrompt = (
 	const prompt = `
 You will receive a user prompt.
 Your task is to react following these rules:
-Answer only in JSON format. Do not respond with anything else than JSON.
+Provide your answer in JSON form. Reply with only the answer in JSON form 
+and include no other commentary
  Your response must match the following type:
 {
 	"command": "string",
@@ -36,6 +37,8 @@ ${humourStyle}.
 
 USER PROMPT:
 ${userArgument}
+
+\n\`\`\`json
 `
 	return prompt;
 }
