@@ -1,27 +1,33 @@
 import { checkEnv, processArgs, performAICall} from './helpers.js'
+import colors from 'colors';
 
 
 async function main() {
 	const preferences = checkEnv();
-	const { useColors, targetOS, humourStyle, terminalEmulator, openAIKey } = preferences;
+	const { targetOS, humourStyle, terminalEmulator, openAIKey } = preferences;
 
-	console.log(`useColors: ${useColors}`);
+	const frames = ['-', '\\', '|', '/'];
+	let i = 0;
 
 	const animationInterval = setInterval(() => {
-		process.stdout.write('.');
-	}, 1500);
+	  process.stdout.write(`\r${colors.yellow('Waiting for response ' + frames[i++])}`);
+	  i = i % frames.length;
+	}, 200);
 
-	const aiString = processArgs();
-	const aiResponse = await performAICall(
-		openAIKey, 
-		aiString,
-		terminalEmulator,targetOS, 
-		humourStyle
-	);
-	clearInterval(animationInterval);
-	console.log();
-
-	console.log(aiResponse);
+	try{
+		const aiString = processArgs();
+		const aiResponse = await performAICall(
+			openAIKey, 
+			aiString,
+			terminalEmulator,targetOS, 
+			humourStyle
+		);
+		clearInterval(animationInterval);
+		process.stdout.write(`\r${colors.green('Response: ' + aiResponse)}`);
+	} catch (error) {
+		clearInterval(animationInterval);
+		process.stdout.write(`\r${colors.red('Error calling OpenAI API: ' + error)}`);
+	}
 }
 
 main();

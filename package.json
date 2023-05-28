@@ -35,6 +35,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "colors": "^1.4.0",
     "dotenv": "^16.0.3",
     "openai": "^3.2.1"
   }

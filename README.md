@@ -40,9 +40,6 @@ Feel free to experiment with your own values the perference properties.
 Here is an example:
 
 ```bash
-USE_COLORS = true
-# USE_COLORS = false
-
 TARGET_OS = "Manjaro Linux"
 # TARGET_OS = "Arch Linx"
 # TARGET_OS = "MacOS"
@@ -126,8 +123,8 @@ To add a new package to the project
 
 # Release History
 
-## v0.2.0
-- Add 'use colors' preference.
+## v0.2.0 (Untagged)
+- Add color and improve waiting animation.
 - General code cleanup and refactoring.
 
 ## v0.1.0

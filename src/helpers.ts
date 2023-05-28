@@ -37,8 +37,6 @@ export const readVersion = (): string => {
 export const checkEnv = (): IPreferences => {
 	try{
 		dotenv.config();
-		const useColors = process.env["USE_COLORS"] === "true";		
-
 		const targetOS = process.env["TARGET_OS"];
 		if (!targetOS) {
 			throw new Error("Define 'TARGET_OS' in .env file in project's root");
@@ -56,7 +54,6 @@ export const checkEnv = (): IPreferences => {
 			throw new Error("Define 'TERMINAL_EMULATOR' in .env file in project's root");
 		}
 		return {
-			useColors,
 			targetOS,
 			humourStyle,
 			terminalEmulator,
