@@ -40,6 +40,9 @@ Feel free to experiment with your own values the perference properties.
 Here is an example:
 
 ```bash
+USE_COLORS = true
+# USE_COLORS = false
+
 TARGET_OS = "Manjaro Linux"
 # TARGET_OS = "Arch Linx"
 # TARGET_OS = "MacOS"
@@ -91,7 +94,7 @@ Add the following lines to your `.zshrc` or `.bashrc` file:
 
 ```bash
 # JNI's GPT on CLI
-alias ai='docker container run jni-gpt-on-cli'
+alias ai='docker container run --rm jni-gpt-on-cli'
 ```
 
 
@@ -122,6 +125,11 @@ To add a new package to the project
 
 
 # Release History
+
+## v0.2.0
+- Add 'use colors' preference.
+- General code cleanup and refactoring.
+
 ## v0.1.0
 - Initial project version
 

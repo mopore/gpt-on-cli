@@ -14,7 +14,7 @@
             ],
             "program": "${workspaceFolder}/src/App.ts",
             "args": [
-                "\"How do I install Alacritty\""
+                "How do I install Alacritty"
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
