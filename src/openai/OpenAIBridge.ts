@@ -5,6 +5,39 @@ export type BridgeResponse = {
 	comment: string
 }
 
+
+const cleanExtractBridgeResponse = (rawInput: string): BridgeResponse | null => {
+	// Create a regex to capture a json string
+	const jsonRegex = /{[^}]*}/g;
+	
+	// Extract JSON string
+	const jsonMatch = rawInput.match(jsonRegex);
+	if (!jsonMatch) {
+		return null;
+	}
+
+	// Parse JSON string into a JavaScript object
+	try {
+		const parsedObject = JSON.parse(jsonMatch[0]);
+
+		// Check if parsed object has the required fields
+		if ('command' in parsedObject && 'comment' in parsedObject) {
+			// Construct and return BridgeResponse object
+			const bridgeResponse: BridgeResponse = {
+				command: parsedObject.command,
+				comment: parsedObject.comment
+			};
+
+			return bridgeResponse;
+		} else {
+			return null;
+		}
+	} catch (error) {
+		return null;
+	}
+}
+
+
 const constructPrompt = (
 	userArgument: string,
 	terminalEmulator: string,
@@ -60,7 +93,7 @@ export class OpenAIBridge {
 		this._openAIApi = new OpenAIApi(config);
 	}
 
-	public async requestResponse(userArgument: string): Promise<BridgeResponse> {
+	public async requestResponse(userArgument: string): Promise<BridgeResponse | null> {
 		try {
 			const response = await this._openAIApi.createChatCompletion({
 				model: "gpt-3.5-turbo",
@@ -77,12 +110,12 @@ export class OpenAIBridge {
 				]
 
 			});
-			const responseText = response.data.choices[0].message?.content;
-			if (!responseText) {
+			const rawInput = response.data.choices[0].message?.content;
+			if (!rawInput) {
 				throw new Error("Response from OpenAI API was empty");
 			}
 			try{
-				const bridgeRespone = JSON.parse(responseText) as BridgeResponse;
+				const bridgeRespone = cleanExtractBridgeResponse(rawInput);
 				return bridgeRespone;
 			}
 			catch (error) {

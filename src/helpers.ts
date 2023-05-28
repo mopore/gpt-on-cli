@@ -102,8 +102,15 @@ export const performAICall = async (
 	humourStyle: string,
 ): Promise<BridgeResponse> => {
 	const aiBridge = new OpenAIBridge( terminalEmulator, targetOS, humourStyle, apiKey);
-	const aiResponse = await aiBridge.requestResponse(userString);
-	return aiResponse;
+	const aiResponse1 = await aiBridge.requestResponse(userString);
+	if (aiResponse1) {
+		return aiResponse1;
+	}
+	const aiResponse2 = await aiBridge.requestResponse(userString);
+	if (aiResponse2) {
+		return aiResponse2;
+	}
+	throw new Error("OpenAI API returned empty response twice.");
 }
 
 
