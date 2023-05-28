@@ -123,7 +123,9 @@ To add a new package to the project
 
 # Release History
 
-## v0.2.0 (Untagged)
+## v0.2.0
+- Improve AI prompt.
+- Improve output formatting.
 - Add color and improve waiting animation.
 - General code cleanup and refactoring.
 

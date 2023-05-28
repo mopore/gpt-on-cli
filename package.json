@@ -1,6 +1,6 @@
 {
   "name": "gpt-on-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Provide access to GPT 3 model via CLI encapsulated as a docker container.",
   "main": "App.ts",
   "type": "module",
