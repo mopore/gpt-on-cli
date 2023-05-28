@@ -12,7 +12,8 @@
     "preinstall": "npx only-allow pnpm",
     "test": "mocha dist/test/**/*.js --recursive --exit",
     "build": "rm -rf ./dist && tsc -b",
-    "build-image": "docker buildx build -t jni-gpt-on-cli ."
+    "build-image": "docker buildx build -t jni-gpt-on-cli .",
+    "run-image": "docker container run --rm jni-gpt-on-cli \"How to install alacritty?\""
   },
   "keywords": [
     "gpt",

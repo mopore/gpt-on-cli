@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import { IPreferences } from "./openai/IPreferences.js";
-import { OpenAIBridge } from "./openai/OpenAIBridge.js";
+import { BridgeResponse, OpenAIBridge } from "./openai/OpenAIBridge.js";
+import colors from 'colors';
 
 
 const VERSION_SHORT = "-v";
@@ -17,6 +18,10 @@ Options:
   ${HELP_SHORT}, ${HELP_LONG}       Show this message and exit.
   ${VERSION_SHORT}, ${VERSION_LONG}   Show version info and exit.
 `;
+
+const ANIMATION_FRAMES = ['-', '\\', '|', '/'];
+const SHOW_ANIMATION_TEXT =    "Waiting for response ";
+const CLEAR_ANIMATION_TEXT = "\r                      ";
 
 
 export const readVersion = (): string => {
@@ -90,19 +95,43 @@ export const processArgs = (): string => {
 
 
 export const performAICall = async (
-	apiKey: string,
 	userString: string,
+	apiKey: string,
 	terminalEmulator: string,
 	targetOS: string,
 	humourStyle: string,
-): Promise<string> => {
-	try {
-		const aiBridge = new OpenAIBridge( terminalEmulator, targetOS, humourStyle, apiKey);
-		const aiResponse = await aiBridge.getCompletion(userString);
-		return aiResponse;
-	} catch (error) {
-		const errorMessage = `SYSTEM ERROR - Could not get respone from AI: ${error}`;
-		console.error(errorMessage);
-		process.exit(9);
-	}
+): Promise<BridgeResponse> => {
+	const aiBridge = new OpenAIBridge( terminalEmulator, targetOS, humourStyle, apiKey);
+	const aiResponse = await aiBridge.requestResponse(userString);
+	return aiResponse;
+}
+
+
+export const animateWaiting = (): NodeJS.Timeout => {
+	let i = 0;
+	return setInterval(() => {
+		const baseText = `Waiting for response ${ANIMATION_FRAMES[i++]}`;
+		const colorizedText = `\r${colors.yellow(baseText)}`;	
+		process.stdout.write(colorizedText);
+		i = i % ANIMATION_FRAMES.length;
+	}, 200);
+}
+
+
+export const presentResponse = (aiResponse: BridgeResponse): void => {
+	process.stdout.write(CLEAR_ANIMATION_TEXT);
+	process.stdout.write(`\r${colors.gray('Use:\n')}`);
+	const text = 
+`${colors.white(aiResponse.command)}
+${colors.gray('\nComment: ')}
+${colors.white(aiResponse.comment)}
+\n`
+	process.stdout.write(text);
+}
+
+
+export const presentError = (error: any): void => {
+	process.stdout.write(CLEAR_ANIMATION_TEXT);
+	const errorMessage = `Exiting with ${error}`;
+	process.stdout.write(`\r${colors.red(errorMessage)}\n`);
 }

@@ -1,5 +1,46 @@
 import { Configuration, OpenAIApi } from "openai";
 
+export type BridgeResponse = {
+	command: string,
+	comment: string
+}
+
+const constructPrompt = (
+	userArgument: string,
+	terminalEmulator: string,
+	targetOS: string,
+	humourStyle: string
+): string => {
+	const prompt = `
+You will receive a user prompt.
+Your task is to react following these rules:
+Answer only in JSON format. Do not respond with anything else than JSON.
+ Your response must match the following type:
+{
+	"command": "string",
+	"comment": "string"
+}
+The user operates on the CLI and seeks for helping regarding a command or a combination 
+of commands.
+The user's terminal emulator is ${terminalEmulator}.
+The user's operating system is ${targetOS}.
+According to the JSON format, you must answer with a command and a comment.
+The command represents your solution to the user's problem and should is meant to be executed.
+If you can not find a solution, you can answer with "No solution found".
+
+With your text meant for the comment field, explain your proposed command. You can also refer to the user's problem in general.
+Do not answer with a comment only.
+Use at most 5 sentences for the comment.
+The user prefers the following style of humor for the comment: 
+${humourStyle}.
+
+USER PROMPT:
+${userArgument}
+`
+	return prompt;
+}
+
+
 export class OpenAIBridge {
 	
 	private _openAIApi: OpenAIApi;
@@ -16,35 +57,19 @@ export class OpenAIBridge {
 		this._openAIApi = new OpenAIApi(config);
 	}
 
-	public async getCompletion(userArgument: string): Promise<string> {
+	public async requestResponse(userArgument: string): Promise<BridgeResponse> {
 		try {
 			const response = await this._openAIApi.createChatCompletion({
 				model: "gpt-3.5-turbo",
 				messages: [
 					{
 						"role": "user",
-						"content": `
-						 	Your task is to react accordingly to the a users input.
-							The rules are as follows:
-							The user communicates via the command line from a terminal emulator.
-							The user's terminal emulator is ${this._terminalEmulator}.
-							Depending on the terminal emulator style you can use color and 
-							unicode characters.
-							The user's operating system is ${this._targetOS}.
-							The text of your response will be directly printed out to the user's terminal.
-							Consequently do not use HTML or other markup languages in your answer.
-							The user asks to solve a CLI problem or a general question.
-							(1) If the user is asking how to solve a problem with the CLI provide
-							the command so it could be copy-pasted by the user. Avoid
-							explanations unless the user explicitly asked for them.
-							Always break the line before and after the command.
-							(2) If the user asks a general question give do not use more than 5 sentences.
-							The prefers the following style of homour in your response: 
-							${this._humourStyle}.
-							These were the rulse.
-							This is the user's input:
-							${userArgument}
-						`
+						"content": constructPrompt(
+							userArgument,
+							this._terminalEmulator,
+							this._targetOS,
+							this._humourStyle
+						)
 					}
 				]
 
@@ -53,7 +78,13 @@ export class OpenAIBridge {
 			if (!responseText) {
 				throw new Error("Response from OpenAI API was empty");
 			}
-			return responseText;
+			try{
+				const bridgeRespone = JSON.parse(responseText) as BridgeResponse;
+				return bridgeRespone;
+			}
+			catch (error) {
+				throw new Error("Could not parse JSON: " + error);
+			}
 		}
 		catch (error) {
 			throw new Error("Error calling OpenAI API: " + error);
