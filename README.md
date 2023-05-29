@@ -123,6 +123,9 @@ To add a new package to the project
 
 # Release History
 
+## v0.2.2
+- Tweak colors.
+
 ## v0.2.1
 - Better handle unclean answers from GPT model.
 

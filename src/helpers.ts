@@ -118,7 +118,7 @@ export const animateWaiting = (): NodeJS.Timeout => {
 	let i = 0;
 	return setInterval(() => {
 		const baseText = `Waiting for response ${ANIMATION_FRAMES[i++]}`;
-		const colorizedText = `\r${colors.yellow(baseText)}`;	
+		const colorizedText = `\r${colors.gray(baseText)}`;	
 		process.stdout.write(colorizedText);
 		i = i % ANIMATION_FRAMES.length;
 	}, 200);
@@ -127,11 +127,11 @@ export const animateWaiting = (): NodeJS.Timeout => {
 
 export const presentResponse = (aiResponse: BridgeResponse): void => {
 	process.stdout.write(CLEAR_ANIMATION_TEXT);
-	process.stdout.write(`\r${colors.gray('Use:\n')}`);
+	process.stdout.write(`\r${colors.yellow('Use:\n')}`);
 	const text = 
 `${colors.white(aiResponse.command)}
-${colors.gray('\nComment: ')}
-${colors.white(aiResponse.comment)}
+${colors.yellow('\nComment: ')}
+${colors.gray(aiResponse.comment)}
 \n`
 	process.stdout.write(text);
 }
