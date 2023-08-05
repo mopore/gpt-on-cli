@@ -82,10 +82,11 @@ export class OpenAIBridge {
 	private _openAIApi: OpenAIApi;
 
 	constructor(
+		apiKey: string,
+		private _gptModel: string,
 		private _terminalEmulator: string,
 		private _targetOS: string,
 		private _humourStyle: string,
-		apiKey: string,
 	) {
 		const config = new Configuration({
 			apiKey: apiKey
@@ -97,7 +98,7 @@ export class OpenAIBridge {
 		try {
 			const response = await this._openAIApi.createChatCompletion({
 				// model: "gpt-4",  // Not yet available
-				model: "gpt-3.5-turbo",
+				model: this._gptModel,
 				messages: [
 					{
 						"role": "user",

@@ -40,6 +40,9 @@ Feel free to experiment with your own values the perference properties.
 Here is an example:
 
 ```bash
+GPT_MODEL = "gpt-4"
+# GPT_MODEL = "gpt-3.5-turbo"
+
 TARGET_OS = "Manjaro Linux"
 # TARGET_OS = "Arch Linx"
 # TARGET_OS = "MacOS"
@@ -51,6 +54,7 @@ HUMOUR_STYLE = "friendly"
 # HUMOUR_STYLE = "mean sarcastic"
 
 TERMINAL_EMULATOR = "very simple"
+# TERMINAL_EMULATOR = "Kitty"
 # TERMINAL_EMULATOR = "Alacritty"
 # TERMINAL_EMULATOR = "iTerm2"
 
@@ -122,6 +126,9 @@ To add a new package to the project
 
 
 # Release History
+
+## v0.3.0
+- Add support for different GPT models.
 
 ## v0.2.2
 - Tweak colors.
