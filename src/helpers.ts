@@ -20,7 +20,7 @@ Options:
 `;
 
 const ANIMATION_FRAMES = ['-', '\\', '|', '/'];
-const SHOW_ANIMATION_TEXT =    "Waiting for response ";
+const SHOW_ANIMATION_TEXT =    "Waiting for response";
 const CLEAR_ANIMATION_TEXT = "\r                      ";
 
 
@@ -117,7 +117,7 @@ export const performAICall = async (
 export const animateWaiting = (): NodeJS.Timeout => {
 	let i = 0;
 	return setInterval(() => {
-		const baseText = `Waiting for response ${ANIMATION_FRAMES[i++]}`;
+		const baseText = `${SHOW_ANIMATION_TEXT} ${ANIMATION_FRAMES[i++]}`;
 		const colorizedText = `\r${colors.gray(baseText)}`;	
 		process.stdout.write(colorizedText);
 		i = i % ANIMATION_FRAMES.length;
