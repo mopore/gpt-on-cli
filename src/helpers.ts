@@ -54,6 +54,10 @@ export const checkEnv = (): IPreferences => {
 		if (!openAIKey) {
 			throw new Error("Define 'OPENAI_KEY' in .env file in project's root");
 		}
+		const gptModel = process.env["GPT_MODEL"];
+		if (!gptModel) {
+			throw new Error("Define 'GPT_MODEL' in .env file in project's root");
+		}
 		const terminalEmulator = process.env["TERMINAL_EMULATOR"];
 		if (!terminalEmulator) {
 			throw new Error("Define 'TERMINAL_EMULATOR' in .env file in project's root");
@@ -62,6 +66,7 @@ export const checkEnv = (): IPreferences => {
 			targetOS,
 			humourStyle,
 			terminalEmulator,
+			gptModel,
 			openAIKey
 		};
 	} catch (error) {
@@ -97,11 +102,18 @@ export const processArgs = (): string => {
 export const performAICall = async (
 	userString: string,
 	apiKey: string,
+	gptModel: string,
 	terminalEmulator: string,
 	targetOS: string,
 	humourStyle: string,
 ): Promise<BridgeResponse> => {
-	const aiBridge = new OpenAIBridge( terminalEmulator, targetOS, humourStyle, apiKey);
+	const aiBridge = new OpenAIBridge( 
+		apiKey,
+		gptModel,
+		terminalEmulator, 
+		targetOS, 
+		humourStyle, 
+	);
 	const aiResponse1 = await aiBridge.requestResponse(userString);
 	if (aiResponse1) {
 		return aiResponse1;

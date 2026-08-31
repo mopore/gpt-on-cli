@@ -8,7 +8,8 @@ async function main() {
 	try{
 		const aiResponse = await h.performAICall(
 			userString,
-			pref.openAIKey, 
+			pref.openAIKey,
+			pref.gptModel, 
 			pref.terminalEmulator,
 			pref.targetOS, 
 			pref.humourStyle
